@@ -1,0 +1,41 @@
+import random
+from hangman_words import wordList
+from hangman_art import logo, stages
+
+print(logo)
+print("Welcome to hangman!")
+
+lives = 6
+
+secretWord = random.choice(wordList)
+
+displayList = []
+for blank in secretWord:
+    displayList += "_"
+    
+print(displayList)
+
+endGame = False
+
+#while loop allows you back to try again.
+while not endGame:
+    guess = input("Guess a letter: ").lower()
+    if guess in displayList:
+        print(f"You've already guessed {guess}.")
+    for spot in range(len(secretWord)):
+        letter = secretWord[spot]
+        if guess == letter:
+            displayList[spot] = letter
+    if guess not in secretWord:
+        lives -= 1
+        print(f"You guessed {guess}, that's not in the word. You lose a life")
+        if lives == 0:
+            endGame == True
+            print("You lose.")
+            
+    print(displayList)
+    if "_" not in displayList:
+        endGame = True
+        print("You win.")
+
+    print(stages[lives])

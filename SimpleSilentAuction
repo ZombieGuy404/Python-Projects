@@ -1,0 +1,40 @@
+gavel ='''
+  ___________
+  \         /
+   )_______(
+   |"""""""|_.-._,.---------.,_.-._
+   |       | | |               | | ''-.
+   |       |_| |_             _| |_..-'
+   |_______| '-' `'---------'` '-'
+   )"""""""(
+  /_________\
+  `'-------'`
+ .-------------.
+/_______________\
+'''
+
+import os
+def clear(): os.system('clear')
+
+
+auctioners = {}
+print(gavel)
+print("Welcome to the silent auction.")
+
+    
+moreBids = True
+while moreBids == True:
+    name = input("What is your name? ")
+    bid = int(input("What is your bid? "))
+    auctioners[name] = bid
+    more_Bid = input("Are there any more bidders? Type 'yes' or 'no'\n")
+    if more_Bid == "yes":
+        clear()
+    else:
+        moreBids = False
+        highBid = 0
+        for bidded in auctioners:
+            if auctioners[bidded] > highBid:
+                highBid = auctioners[bidded]
+                winner = bidded
+        print(f"The winner is {bidded} with a bid of ${highBid}.")

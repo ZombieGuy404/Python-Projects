@@ -27,7 +27,7 @@ def playGame():
     
     print(logo)
     print("Welcome to the Guessing Game")
-    compNumber = random.randint(1, 101)
+    compNumber = random.randint(1, 100)
     print("I'm thinking of a number between 1 and 100.")
     difMode = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
     

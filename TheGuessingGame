@@ -1,0 +1,58 @@
+logo = '''
+
+ _____ _              ___                     _                 ___                     
+/__   \ |__   ___    / _ \_   _  ___  ___ ___(_)_ __   __ _    / _ \__ _ _ __ ___   ___ 
+  / /\/ '_ \ / _ \  / /_\/ | | |/ _ \/ __/ __| | '_ \ / _` |  / /_\/ _` | '_ ` _ \ / _ \
+ / /  | | | |  __/ / /_\\| |_| |  __/\__ \__ \ | | | | (_| | / /_\\ (_| | | | | | |  __/
+ \/   |_| |_|\___| \____/ \__,_|\___||___/___/_|_| |_|\__, | \____/\__,_|_| |_| |_|\___|
+                                                      |___/                             
+'''
+
+
+
+import random
+import os
+def clear(): 
+    os.system('clear')
+
+def playGame():
+    #this function gives us the starting total guesses
+    def attemptStart():
+        attemptsStart = 0
+        if difMode == "easy":
+            return attemptsStart + 10
+        elif difMode == "hard":
+            return attemptsStart + 5
+    
+    
+    print(logo)
+    print("Welcome to the Guessing Game")
+    compNumber = random.randint(1, 101)
+    print("I'm thinking of a number between 1 and 100.")
+    difMode = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+    
+    num_of_attempts = attemptStart()
+        
+    gameOver = False
+    while not gameOver:
+        if num_of_attempts == 0:
+            print("You ran out of guesses. You lose.")
+            gameOver = True
+        else:
+            print(f"You have {num_of_attempts} attempts remaining to guess the number.")
+            guess = int(input("Make a guess: "))
+            if guess != compNumber:
+                if guess > compNumber:
+                    print("Too high.")
+                else:
+                    print("Too low.")
+                print("Guess again")
+                num_of_attempts -= 1
+            elif guess == compNumber:
+                gameOver = True
+                print("You got it! Winner!")
+            
+
+while input("Do you want to play a game? Type Y/N ").lower() == "y":
+    clear()
+    playGame()
